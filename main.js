@@ -123,7 +123,7 @@ function addStar() {
 Array(300).fill().forEach(addStar);
 
 // planet
-const planetTexture = new THREE.TextureLoader().load("planetTex.jpg");
+const planetTexture = new THREE.TextureLoader().load("images/planetTex.jpg");
 //const planetNormal = new THREE.TextureLoader().load("moonNormal.jpeg");
 
 const planet = new THREE.Mesh(
@@ -137,7 +137,7 @@ const planet = new THREE.Mesh(
 scene.add(planet);
 
 // space background
-const spaceTexture = new THREE.TextureLoader().load("space.jpg");
+const spaceTexture = new THREE.TextureLoader().load("images/space.jpg");
 scene.background = spaceTexture;
 
 let redShift = 0.01;
