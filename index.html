@@ -16,13 +16,6 @@
         <p>📻 Computer Engineering at Brown University</p>
       </header>
 
-      <blockquote>
-        <p>
-          Full stack development, visual computing, computer aided design, and
-          more
-        </p>
-      </blockquote>
-
       <section>
         <h2>Who I Am</h2>
         <p>
@@ -39,10 +32,10 @@
           <a href="https://cs1230.graphics/">CS1230</a> for the Fall 2023
           semester. I've also worked for
           <a href="https://www.idtech.com/">iD Tech Camps</a> and in the
-          <a href="https://h2r.cs.brown.edu/">Humans to Robots lab</a>. I'll be
-          working at <a href="https://www.hologic.com/">Hologic</a> this Summer
-          as a systems engineering intern. A few of my projects are featured on
-          this site but feel free to visit my Github pages
+          <a href="https://h2r.cs.brown.edu/">Humans to Robots lab</a>. I am
+          working at <a href="https://www.hologic.com/">Hologic</a> for this
+          Summer as a systems engineering intern. A few of my projects are
+          featured on this site but feel free to visit my Github pages
           <a href="https://github.com/austin-funk">here</a> and
           <a href="https://github.com/chezgr8r">here</a>. Beyond academics, I'm
           an Eagle Scout, I'm a member of IgniteCS at Brown, and I love playing
@@ -60,6 +53,70 @@
       <section class="light">
         <h2>🔭 Projects</h2>
 
+        <h3>Computer Science Concentration Manager</h3>
+        <p>
+          With a team of three others, we built the
+          <a
+            href="https://github.com/cs0320-s2023/final-project-afunk3-jhirschh-aagvania-hpeter11"
+          >
+            Computer Science Concentration Manager
+          </a>
+          for our final project in <a href="https://cs0320.github.io/">CS32</a>.
+          Below are two screenshots of the interface, one without the
+          information boxes displayed and one with the boxes. The goal of the
+          project was to provide computer science students at Brown an
+          easy-to-use tool to non-deterministically generate a schedule based on
+          the user's preferences and previous courses.
+        </p>
+        <img
+          src="images/CSCM_no_info.png"
+          alt="CSCM"
+          style="width: 700px; height: 341px"
+          class="maze-gif"
+        />
+        <p>
+          The tool provides many user tested and suggested features, including a
+          custom graduation year, a dropdown with different pathway options, a
+          search bar with an up-to-date database of courses that can be used to
+          fulfill the computer science ScB requirements, a table with different
+          categories to sort courses into, an interactive schedule that allows
+          for easy and intuitive editing, and several more quality of life
+          features. Using these constraints, a backend optimizer built using
+          Google OR-Tools creates a suggested schedule that differs with each
+          generation, even when given the same inputs. The backend is written
+          primarily with Java, while the frontend uses HTML/CSS/TypeScript with
+          React, Node.js, Jekyll, and more.
+        </p>
+        <img
+          src="images/CSCM_with_info.png"
+          alt="CSCM With Info"
+          style="width: 700px; height: 341px"
+          class="maze-gif"
+        />
+        <br />
+
+        <h3>Itsy Bitsy Spider</h3>
+        <p>
+          My final project for <a href="https://cs1230.graphics/">CS1230</a> was
+          <a href="https://github.com/jqhc/CS1230-Final-Project"
+            >Itsy Bitsy Spider</a
+          >, a user-controlled spider that uses inversed kinematics to animate
+          its legs. The project utilizes OpenGL and C++ as its primary
+          technologies. This was a partner project that we designed to further
+          our skills with graphics programming. The idea to use inverse
+          kinematics is borrowed from the field of robotics and involves solving
+          a set of complex equations to determine the angles between leg
+          segments given the position of the foot and the shoulder.
+        </p>
+        <img
+          src="images/ItsyBitsy.png"
+          alt="Spider"
+          style="width: 600px; height: 444px"
+          class="maze-gif"
+        />
+        <br />
+
+        <h3>Maze Solver</h3>
         <p>
           My
           <a href="https://github.com/chezgr8r/maze-solver">maze solver</a> is
@@ -81,26 +138,6 @@
           class="maze-gif"
         />
 
-        <br />
-
-        <p>
-          My final project for <a href="https://cs1230.graphics/">CS1230</a> was
-          <a href="https://github.com/jqhc/CS1230-Final-Project"
-            >Itsy Bitsy Spider</a
-          >, a user-controlled spider that uses inversed kinematics to animate
-          its legs. The project utilizes OpenGL and C++ as its primary
-          technologies. This was a partner project that we designed to further
-          our skills with graphics programming. The idea to use inverse
-          kinematics is borrowed from the field of robotics and involves solving
-          a set of complex equations to determine the angles between leg
-          segments given the position of the foot and the shoulder.
-        </p>
-        <img
-          src="images/ItsyBitsy.png"
-          alt="Spider"
-          style="width: 600px; height: 444px"
-          class="maze-gif"
-        />
         <br />
       </section>
 
@@ -138,17 +175,25 @@
         <p>
           For the duration of this summer I am working at
           <a href="https://www.hologic.com/">Hologic</a>, a medical devices
-          manufacturer and innovator. As of updating the site, I've only been
-          working there for two weeks, so I've only had the opportunity to work
-          on one substantial project so far. I'm nearly finished with a desktop
-          application that will allow engineers and technicians to quickly and
-          easily change the device settings of one of Hologic's diagnostic
-          machines (it isn't on the market in the United States just yet, but
-          will be very soon). The application is built as a separate project
-          within the codebase, but utilizes many shared interfaces. The
-          technologies used include WPF, C#, .NET, and SQL, and some of the
-          planned features include favorites or recent settings and a search
-          bar. I'm looking forward to everything I'll learn this summer!
+          manufacturer and innovator. As of updating the site, I've successfully
+          finished a desktop application that allows engineers and technicians
+          to quickly and easily change the device settings of one of
+          <a
+            href="https://www.hologic.com/hologic-products/cytology/genius-digital-diagnostics-system"
+            >Hologic's diagnostic machines</a
+          >. The technologies used include WPF, C#, .NET, and SQL. Some of the
+          features include custom favorites, uploading new settings from JSON
+          files, importing and exporting the current settings as a CSV or in a
+          more human-readable format, a searchbar that utilizes Levenshtein
+          distance to find settings within a tree structure, and is stateful to
+          allow for one-time setup. I've made changes and added features based
+          on the needs of senior developers in my division, including tooltips
+          for favorites, highlighting favorite settings whose values differ from
+          the original JSONs, and adjustments to the UI to account for the
+          smaller screen size of the imager. I am in the process of installing
+          cameras with custom scripting into some of the test imagers, and will
+          start on a computer vision project using OpenCV to help the imager
+          intelligently find medical slides at some point soon.
         </p>
         <h3>Undergraduate Teaching Assistant</h3>
         <h4>Brown University</h4>
@@ -214,6 +259,7 @@
         />
         <a
           href="https://www.linkedin.com/in/austinfunk/"
+          title="LinkedIn"
           class="fa fa-linkedin"
         ></a>
         <a href="https://www.github.com/austin-funk" class="fa fa-github"></a>
