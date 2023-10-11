@@ -35,7 +35,7 @@ function addRing(x, y, z) {
   const innerRad = Math.floor(Math.random() * 10) + planetRadius + 3;
   const geometry = new THREE.RingGeometry(
     innerRad,
-    innerRad + Math.random() * 2 + 0.1,
+    innerRad + Math.random() * 4 + 0.5,
     32
   );
   //const geometry = new THREE.TorusGeometry(5, 0.5, 16, 100);
@@ -64,13 +64,13 @@ function addRing(x, y, z) {
     100 *
     (Math.floor(Math.random() * 2) * 2 - 1);
 
-  ringRotations.push({ x: 1.0 / rotX, y: 1.0 / rotY, z: 1.0 / rotZ });
+  ringRotations.push({ x: 1.0 / rotX, y: 1.0 / rotY, z: 0 }); //1.0 / rotZ
 
   return torus;
 }
 
 const rings = [];
-const numRings = 5;
+const numRings = 3;
 for (let i = 0; i < numRings; i++) {
   const randX = (Math.floor(Math.random() * 3) - 1) * 0.5;
   const randY = (Math.floor(Math.random() * 3) - 1) * 0.5;
@@ -139,10 +139,6 @@ scene.add(planet);
 // space background
 const spaceTexture = new THREE.TextureLoader().load("images/space.jpg");
 scene.background = spaceTexture;
-
-let redShift = 0.01;
-let blueShift = 0.005;
-let greenShift = -0.01;
 
 function changeColor(ring, red, green, blue) {
   if (ring.material.color.r > 0.9) {
@@ -245,12 +241,6 @@ function animate() {
       ringRotations[i].x,
       ringRotations[i].y,
       ringRotations[i].z
-    );
-    [redShift, greenShift, blueShift] = changeColor(
-      rings[i],
-      redShift,
-      greenShift,
-      blueShift
     );
   }
 
