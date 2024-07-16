@@ -6,6 +6,20 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funk's Site</title>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./three.js-master/build/three.module.js",
+          "three/addons/": "./three.js-master/examples/jsm/"
+        }
+      }
+    </script>
+    <script
+      async
+      src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"
+    ></script>
+    <script src="main.js" type="module"></script>
   </head>
   <body>
     <canvas id="bg"></canvas>
@@ -19,50 +33,128 @@
       <section>
         <h2>Who I Am</h2>
         <p>
-          I'm a rising junior (class of 2025) studying computer engineering at
-          Brown University. My areas of interest include web development,
-          systems programming, 3D graphics, robotics, and general electronics. I
-          enjoy teaching and have been a teaching assistant for two computer
-          science courses,
-          <a href="https://cs.brown.edu/courses/cs019/2022/staff.html">CS19</a>
-          and
-          <a href="https://cs.brown.edu/courses/csci0300/2023/staff.html"
-            >CS300</a
-          >, and I'll be a teaching assistant for
-          <a href="https://cs1230.graphics/">CS1230</a> for the Fall 2023
-          semester. I've also worked for
-          <a href="https://www.idtech.com/">iD Tech Camps</a> and in the
-          <a href="https://h2r.cs.brown.edu/">Humans to Robots lab</a>. I am
-          working at <a href="https://www.hologic.com/">Hologic</a> for this
-          Summer as a systems engineering intern. A few of my projects are
-          featured on this site but feel free to visit my Github pages
-          <a href="https://github.com/austin-funk">here</a> and
-          <a href="https://github.com/chezgr8r">here</a>. Beyond academics, I'm
-          an Eagle Scout, I'm a member of IgniteCS at Brown, and I love playing
-          my alto saxophone.
+          I'm a rising senior (class of 2025) studying computer engineering at
+          Brown University. My areas of interest include 3D graphics, systems
+          programming, web development, robotics, and high performance
+          electronics. I have enjoyed being a teaching assistant for three
+          computer science courses,
+          <mark
+            ><a href="https://cs.brown.edu/courses/cs019/2022/staff.html"
+              >CS19</a
+            ></mark
+          >,
+          <mark
+            ><a href="https://cs.brown.edu/courses/csci0300/2023/staff.html"
+              >CS300</a
+            ></mark
+          >, and <mark><a href="https://cs1230.graphics/">CS1230</a></mark
+          >. I'll be returning as a teaching assistant for Introduction to
+          Computer Graphics this fall and am excited to also be a teaching
+          assistant for ENGN1630, Digital Electronics Systems Design. I've
+          previously worked for
+          <mark><a href="https://www.hologic.com/">Hologic</a></mark> as a
+          systems engineering intern, in the
+          <mark
+            ><a href="https://ivl.cs.brown.edu/"
+              >Interactive 3D Vision & Learning Lab</a
+            ></mark
+          >
+          as a funded undergraduate researcher, and for
+          <mark><a href="https://home.barclays/">Barclays</a></mark> as a
+          technology developer in support of large scale loan trading. A few of
+          my projects are featured on this site but feel free to visit my Github
+          pages
+          <mark><a href="https://github.com/austin-funk">here</a></mark> and
+          <mark><a href="https://github.com/chezgr8r">here</a></mark> for more.
+          Beyond academics, I'm an Eagle Scout, have taken part in teaching and
+          service initiatives via IgniteCS at Brown, and I play the alto
+          saxophone.
         </p>
 
         <p>
           If you're interested in my work or would like to learn more about what
           I do, feel free to reach out via
-          <a href="https://www.linkedin.com/in/austinfunk/">LinkedIn</a> or by
-          email.
+          <mark
+            ><a href="https://www.linkedin.com/in/austinfunk/"
+              >LinkedIn</a
+            ></mark
+          >
+          or by email.
+        </p>
+
+        <p>
+          P.S. The cows rotating in the background are from one of my graphics
+          projects. One of the features from this project allows users to
+          simplify complex meshes while retaining their general context. The
+          pink cow includes 5804 unique triangle faces while the yellow cow
+          includes only 804 faces, reducing the file size by over 87%.
         </p>
       </section>
 
       <section class="light">
         <h2>🔭 Projects</h2>
 
+        <h3>Physically Accurate Simulation</h3>
+        <p>
+          During my sixth semester I took
+          <mark><a href="https://cs2240.graphics/">CS2240</a></mark
+          >, Advanced Graphics, which included five intensive projects,
+          including an open ended group implementation and extension of a recent
+          graphics paper. One of these projects was designing and building a
+          physical simulation engine using the finite element method (FEM). This
+          project explores advanced mechanics, collision detection and
+          resolution, surface mesh extraction, and a system-solver design
+          paradigm. The engine was built using primarily C++ and OpenGL.
+          <center>
+            <video width="700px" controls="controls">
+              <source src="images/simulation.mp4" type="video/mp4" />
+            </video>
+          </center>
+        </p>
+        <br />
+
+        <h3>ReSTIR/NRC</h3>
+        <p>
+          My final project for Advanced Graphics was an implementation of
+          <mark
+            ><a
+              href="https://research.nvidia.com/publication/2021-06_restir-gi-path-resampling-real-time-path-tracing"
+              >ReSTIR GI</a
+            ></mark
+          >
+          and
+          <mark
+            ><a
+              href="https://research.nvidia.com/publication/2021-06_real-time-neural-radiance-caching-path-tracing"
+              >NRC</a
+            ></mark
+          >
+          for vastly improved path tracing both visually and in performance. We
+          primarily used C++, OptiX, and CUDA to implement both papers on top of
+          a preexisting path tracer implementation. The left side of the video
+          is path tracing with our improvements and the right side of the video
+          is path tracing without ReSTIR and NRC.
+          <center>
+            <video width="700px" controls="controls">
+              <source src="images/restirnrc.mp4" type="video/mp4" />
+            </video>
+          </center>
+        </p>
+        <br />
+
         <h3>Computer Science Concentration Manager</h3>
         <p>
           With a team of three others, we built the
-          <a
-            href="https://github.com/cs0320-s2023/final-project-afunk3-jhirschh-aagvania-hpeter11"
+          <mark
+            ><a
+              href="https://github.com/cs0320-s2023/final-project-afunk3-jhirschh-aagvania-hpeter11"
+            >
+              Computer Science Concentration Manager
+            </a></mark
           >
-            Computer Science Concentration Manager
-          </a>
-          for our final project in <a href="https://cs0320.github.io/">CS32</a>.
-          Below are two screenshots of the interface, one without the
+          for our final project in
+          <mark><a href="https://cs0320.github.io/">CS32</a></mark
+          >. Below are two screenshots of the interface, one without the
           information boxes displayed and one with the boxes. The goal of the
           project was to provide computer science students at Brown an
           easy-to-use tool to non-deterministically generate a schedule based on
@@ -97,9 +189,12 @@
 
         <h3>Itsy Bitsy Spider</h3>
         <p>
-          My final project for <a href="https://cs1230.graphics/">CS1230</a> was
-          <a href="https://github.com/jqhc/CS1230-Final-Project"
-            >Itsy Bitsy Spider</a
+          My final project for
+          <mark><a href="https://cs1230.graphics/">CS1230</a></mark> was
+          <mark
+            ><a href="https://github.com/jqhc/CS1230-Final-Project"
+              >Itsy Bitsy Spider</a
+            ></mark
           >, a user-controlled spider that uses inversed kinematics to animate
           its legs. The project utilizes OpenGL and C++ as its primary
           technologies. This was a partner project that we designed to further
@@ -119,8 +214,12 @@
         <h3>Maze Solver</h3>
         <p>
           My
-          <a href="https://github.com/chezgr8r/maze-solver">maze solver</a> is
-          built using Python and PyGame. The project provides a visual and
+          <mark
+            ><a href="https://github.com/chezgr8r/maze-solver"
+              >maze solver</a
+            ></mark
+          >
+          is built using Python and PyGame. The project provides a visual and
           interactive demo of Dijkstra's algorithm and gives intuition into how
           it works. The program allows users to change the size of the board,
           randomly generate mazes, create and edit mazes, place custom start and
@@ -144,33 +243,58 @@
       <section class="left">
         <h1>💼 Work History</h1>
 
+        <h3>Intern, Technology Developer</h3>
+        <h4>Barclays</h4>
+        <p>
+          For 10 weeks between my junior and senior years (2025), I worked at
+          <mark><a href="https://home.barclays/">Barclays</a></mark
+          >, one of the largest and oldest banks in the world. I worked on the
+          wholesale lending team, developing new requested features for high
+          volume loan trading, notably a security feature that prevents
+          unsettled trades from being prematurely closed. The primary languages
+          and technologies I worked with were Java, TypeScript, React, Spring,
+          Hibernate, and AWS.
+        </p>
+
         <h3>Intern, Systems Engineer</h3>
         <h4>Hologic</h4>
         <p>
-          For the duration of this summer I am working at
-          <a href="https://www.hologic.com/">Hologic</a>, a medical devices
-          manufacturer and innovator. As of updating the site, I've successfully
-          finished a desktop application that allows engineers and technicians
-          to quickly and easily change the device settings of one of
-          <a
-            href="https://www.hologic.com/hologic-products/cytology/genius-digital-diagnostics-system"
-            >Hologic's diagnostic machines</a
-          >. The technologies used include WPF, C#, and SQL. Most of the key
-          features are showcased in the video below. I have also
-          <a
-            href="https://docs.google.com/presentation/d/1mRKvUsD5e1wn2uHNYcYBgFGq2SDFzZ1C/edit?usp=sharing&ouid=112669404433003057403&rtpof=true&sd=true"
-            >linked</a
+          For 13 weeks between my sophomore and junior years (2024), I worked at
+          <mark><a href="https://www.hologic.com/">Hologic</a></mark
+          >, a medical devices manufacturer and innovator. I designed and
+          implemented a desktop application that allows engineers and
+          technicians to quickly and easily change the device settings of one of
+          <mark
+            ><a
+              href="https://www.hologic.com/hologic-products/cytology/genius-digital-diagnostics-system"
+              >Hologic's diagnostic machines</a
+            ></mark
+          >. This project was unique for me in that I was able to work directly
+          with the end users of my product in order to add features and improve
+          the tool to fit their needs. The technologies used include WPF, C#,
+          and SQL. Most of the key features are showcased in the video below. I
+          have also
+          <mark
+            ><a
+              href="https://docs.google.com/presentation/d/1mRKvUsD5e1wn2uHNYcYBgFGq2SDFzZ1C/edit?usp=sharing&ouid=112669404433003057403&rtpof=true&sd=true"
+              >linked</a
+            ></mark
           >
           a powerpoint presentation that dives into my other projects and was
           presented to senior leadership at Hologic, including Vice President of
           Research & Development / Innovation
-          <a href="https://www.linkedin.com/in/michael-quick-75316711/"
-            >Mike Quick</a
-          >. I was also featured in an internal article on Hologic's website and
-          on the Brown Engineering
-          <a
-            href="https://engineering.brown.edu/news/2023-08-15/engineering-summer-internships"
-            >website</a
+          <mark
+            ><a href="https://www.linkedin.com/in/michael-quick-75316711/"
+              >Mike Quick</a
+            ></mark
+          >, including a 24/7 hardware bug surveillance system and performance
+          measurement tool. I was also featured in an internal article on
+          Hologic's website and on the Brown Engineering
+          <mark
+            ><a
+              href="https://engineering.brown.edu/news/2023-08-15/engineering-summer-internships"
+              >website</a
+            ></mark
           >
           for this internship.
           <center>
@@ -194,11 +318,11 @@
           for assignments focused on C/C++ programming, multithreading, and
           more; grading ~12 project submissions weekly or biweekly, depending on
           deadlines; and helping students with debugging through the class's
-          online discussion board. For the upcoming Fall 2023 semester, I will
-          be a UTA for CSCI 1230, Introduction to Computer Graphics. I'll be
-          working to improve the class over the summer in several ways,
-          including improvements to the grading infrastructure to make the
-          process faster and smoother for both students and staff.
+          online discussion board. For the Fall 2023 semester I was a UTA for
+          CSCI 1230, Introduction to Computer Graphics. I worked on several
+          course improvements including new scenes for grading and testing, I
+          held office hours and one-on-one grading sessions, and mentored three
+          final project groups from conception to product.
         </p>
         <h3>iD Tech Camps</h3>
         <p>
@@ -235,14 +359,30 @@
         <h2>🔬 Research</h2>
 
         <p>
-          I've worked in the
-          <a href="https://h2r.cs.brown.edu/">Humans to Robots lab</a> under
-          <a href="https://jamestompkin.com/">Professor James Tompkin</a> and
-          PhD student
-          <a href="https://cs.brown.edu/people/er35/">Eric Rosen</a>, along with
-          a team of other undergraduates. We worked on expanding the
-          <a href="https://www.brown.edu/news/2017-12-14/robotvr"
-            >VR teleoperation</a
+          I currently work in the Interactive 3D Vision & Learning Lab (<mark
+            ><a href="https://ivl.cs.brown.edu/">IVL</a></mark
+          >) on text-to-motion for 3D hand actions using diffusion and LLMs.
+          This position was originally funded via an UTRA award under
+          <mark
+            ><a href="https://cs.brown.edu/people/ssrinath/"
+              >Professor Srinath Sridhar</a
+            ></mark
+          >. I've also worked in the
+          <mark
+            ><a href="https://h2r.cs.brown.edu/">Humans to Robots lab</a></mark
+          >
+          under
+          <mark
+            ><a href="https://jamestompkin.com/"
+              >Professor James Tompkin</a
+            ></mark
+          >
+          with a PhD student and other undergraduates. We worked on expanding
+          the
+          <mark
+            ><a href="https://www.brown.edu/news/2017-12-14/robotvr"
+              >VR teleoperation</a
+            ></mark
           >
           project, applying developed technology to a different VR headset and
           robot, specifically the Oculus and Boston Dynamics SPOT. Some of the
@@ -254,17 +394,6 @@
           style="width: 600px; height: 314px"
           class="maze-gif"
         />
-        <p>
-          During the upcoming Fall semester, I will be working with
-          <a href="https://cs.brown.edu/people/ssrinath/"
-            >Professor Srinath Sridhar</a
-          >
-          in his lab, the Interactive 3D Vision & Learning Lab (<a
-            href="https://ivl.cs.brown.edu/"
-            >IVL</a
-          >), as an UTRA recipient. I look forward to including more information
-          once the semester begins!
-        </p>
         <br />
       </section>
 
@@ -288,7 +417,7 @@
       </linked-section>
     </main>
 
-    <script type="module" src="/main.js"></script>
-    <script src="js/three.js"></script>
+    <!--<script type="module" src="/main.js"></script>
+    <script src="js/three.js"></script>-->
   </body>
 </html>

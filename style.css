@@ -97,6 +97,7 @@ header {
   font-size: 2.5rem;
   padding: 2rem;
   margin-bottom: var(--spacing);
+  background: rgba(15, 15, 15, 0.5);
 }
 
 linked-section {
@@ -116,6 +117,7 @@ section {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: var(--spacing);
+  background: rgba(15, 15, 15, 0.5);
 }
 
 blockquote {
@@ -131,6 +133,10 @@ blockquote p {
   font-size: 4rem;
   display: inline;
   line-height: 1.12;
+}
+
+mark {
+  background-color: #030303;
 }
 
 .maze-gif {

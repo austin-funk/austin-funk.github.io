@@ -1,6 +1,13 @@
 // import "./style.css";
 import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
+//import * as THREE from "./three";
 import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
+import { OBJLoader } from "https://unpkg.com/three@0.126.1/examples/jsm/loaders/OBJLoader.js";
+
+// "./three/examples/js/loaders/OBJLoader.js"; "./three/addons/controls/OrbitControls.js"; //
+
+// create instance of objloader
+const loader = new OBJLoader();
 
 // create scene, camera, renderer
 const scene = new THREE.Scene();
@@ -12,6 +19,45 @@ const camera = new THREE.PerspectiveCamera(
 );
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
+});
+
+// add detailed cow
+var cow_model_detailed;
+loader.load("models/cow.obj", function (object) {
+  cow_model_detailed = object;
+  const mat = new THREE.MeshBasicMaterial({
+    color: 0xff00ff,
+    wireframe: true,
+  });
+
+  cow_model_detailed.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      child.position.y = -8;
+      child.material = mat;
+    }
+  });
+
+  scene.add(cow_model_detailed);
+});
+
+// add simplified cow
+var cow_model_simplified;
+loader.load("models/simple_cow.obj", function (object) {
+  cow_model_simplified = object;
+  const mat = new THREE.MeshBasicMaterial({
+    color: 0xffff00,
+    wireframe: true,
+  });
+
+  cow_model_simplified.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      //child.rotation.y = Math.PI / 4 + Math.PI;
+      child.position.y = -8;
+      child.material = mat;
+    }
+  });
+
+  scene.add(cow_model_simplified);
 });
 
 // set screen and camera
@@ -84,7 +130,7 @@ for (let i = 0; i < numRings; i++) {
       ringRotations[i].z
     );
   }
-  scene.add(rings[i]);
+  //scene.add(rings[i]);
 }
 
 // point light
@@ -134,7 +180,7 @@ const planet = new THREE.Mesh(
   })
 );
 
-scene.add(planet);
+//scene.add(planet);
 
 // space background
 const spaceTexture = new THREE.TextureLoader().load("images/space.jpg");
@@ -226,6 +272,15 @@ document.body.onscroll = function moveCamera() {
     }
   }
 
+  // cows
+  //cow_model_detailed.position.y += ratio * 3;
+  cow_model_detailed.position.x += ratio * 15;
+  //cow_model_simplified.position.y -= ratio * 3;
+  cow_model_simplified.position.x -= ratio * 15;
+  console.log("ratio: " + ratio);
+  rotateRing(cow_model_detailed, 0, -ratio * 12, 0);
+  rotateRing(cow_model_simplified, 0, -ratio * 12, 0);
+
   // set new previous
   prevOff = window.pageYOffset;
 };
@@ -244,8 +299,9 @@ function animate() {
     );
   }
 
-  // planet
-  rotateRing(planet, 0, -0.01, 0);
+  // cow
+  rotateRing(cow_model_detailed, 0, -0.01, 0);
+  rotateRing(cow_model_simplified, 0, -0.01, 0);
 
   // camera
   camera.position.x = radius * Math.cos(angle);
