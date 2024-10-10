@@ -11,13 +11,13 @@ const loader = new OBJLoader();
 
 // create scene, camera, renderer
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
+let camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-const renderer = new THREE.WebGLRenderer({
+let renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
 });
 
@@ -32,7 +32,7 @@ loader.load("models/cow.obj", function (object) {
 
   cow_model_detailed.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
-      child.position.y = -8;
+      child.position.y = -window.innerHeight / 100;
       child.material = mat;
     }
   });
@@ -51,8 +51,7 @@ loader.load("models/simple_cow.obj", function (object) {
 
   cow_model_simplified.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
-      //child.rotation.y = Math.PI / 4 + Math.PI;
-      child.position.y = -8;
+      child.position.y = -window.innerHeight / 100;
       child.material = mat;
     }
   });
@@ -169,16 +168,16 @@ function addStar() {
 Array(300).fill().forEach(addStar);
 
 // planet
-const planetTexture = new THREE.TextureLoader().load("images/planetTex.jpg");
-//const planetNormal = new THREE.TextureLoader().load("moonNormal.jpeg");
+// const planetTexture = new THREE.TextureLoader().load("images/planetTex.jpg");
+// //const planetNormal = new THREE.TextureLoader().load("moonNormal.jpeg");
 
-const planet = new THREE.Mesh(
-  new THREE.SphereGeometry(planetRadius, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: planetTexture,
-    //normalMap: planetNormal,
-  })
-);
+// const planet = new THREE.Mesh(
+//   new THREE.SphereGeometry(planetRadius, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: planetTexture,
+//     //normalMap: planetNormal,
+//   })
+// );
 
 //scene.add(planet);
 
@@ -186,30 +185,30 @@ const planet = new THREE.Mesh(
 const spaceTexture = new THREE.TextureLoader().load("images/space.jpg");
 scene.background = spaceTexture;
 
-function changeColor(ring, red, green, blue) {
-  if (ring.material.color.r > 0.9) {
-    red = -0.01;
-  } else if (ring.material.color.r < 0.1) {
-    red = 0.01;
-  }
-  ring.material.color.r += red;
+// function changeColor(ring, red, green, blue) {
+//   if (ring.material.color.r > 0.9) {
+//     red = -0.01;
+//   } else if (ring.material.color.r < 0.1) {
+//     red = 0.01;
+//   }
+//   ring.material.color.r += red;
 
-  if (ring.material.color.g > 0.9) {
-    green = -0.01;
-  } else if (ring.material.color.g < 0.1) {
-    green = 0.01;
-  }
-  ring.material.color.g += green;
+//   if (ring.material.color.g > 0.9) {
+//     green = -0.01;
+//   } else if (ring.material.color.g < 0.1) {
+//     green = 0.01;
+//   }
+//   ring.material.color.g += green;
 
-  if (ring.material.color.b > 0.9) {
-    blue = -0.005;
-  } else if (ring.material.color.b < 0.1) {
-    blue = 0.005;
-  }
-  ring.material.color.b += blue;
+//   if (ring.material.color.b > 0.9) {
+//     blue = -0.005;
+//   } else if (ring.material.color.b < 0.1) {
+//     blue = 0.005;
+//   }
+//   ring.material.color.b += blue;
 
-  return [red, green, blue];
-}
+//   return [red, green, blue];
+// }
 
 // move camera
 // function shiftRing(ring, whenToMove, jump, originalY, compare) {
@@ -257,6 +256,7 @@ document.body.onscroll = function moveCamera() {
   // rotate camera
   const ratio =
     (window.pageYOffset - prevOff) / document.documentElement.scrollHeight;
+  console.log("scrollHeight: %d", document.documentElement.scrollHeight);
   camera.position.x = radius * Math.cos(angle);
   camera.position.z = radius * Math.sin(angle);
   console.log(ratio);
@@ -285,6 +285,8 @@ document.body.onscroll = function moveCamera() {
   prevOff = window.pageYOffset;
 };
 
+let prevAspect = camera.aspect;
+
 // animate each frame
 function animate() {
   requestAnimationFrame(animate);
@@ -309,6 +311,15 @@ function animate() {
   angle += 0.001;
 
   controls.update();
+
+  if (window.innerWidth / window.innerHeight != prevAspect) {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    prevAspect = camera.aspect;
+  }
+  //console.log("width: %d, height: %d", window.innerWidth, window.innerHeight);
 
   renderer.render(scene, camera);
 }

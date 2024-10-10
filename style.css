@@ -178,3 +178,8 @@ mark {
   background: rgb(66, 212, 223);
   color: white;
 }
+
+@media screen and (max-width: 800px) {
+}
+/* Need to have variable video/image sizes, scale background better, wordy sections should be whole
+   screen and smaller font. */
