@@ -21,6 +21,18 @@ let renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
 });
 
+const pivotPos = new THREE.Vector3(20, 5, -10);
+
+// create cowPivot
+const cowPivot = new THREE.Object3D();
+cowPivot.position.set(pivotPos.x, pivotPos.y, pivotPos.z);
+scene.add(cowPivot);
+
+// create starPivot
+const starPivot = new THREE.Object3D();
+starPivot.position.set(pivotPos.x, pivotPos.y, pivotPos.z);
+scene.add(starPivot);
+
 // add detailed cow
 var cow_model_detailed;
 loader.load("models/cow.obj", function (object) {
@@ -37,7 +49,8 @@ loader.load("models/cow.obj", function (object) {
     }
   });
 
-  scene.add(cow_model_detailed);
+  cowPivot.add(cow_model_detailed);
+  cow_model_detailed.position.set(0, 0, 0);
 });
 
 // add simplified cow
@@ -56,7 +69,8 @@ loader.load("models/simple_cow.obj", function (object) {
     }
   });
 
-  scene.add(cow_model_simplified);
+  cowPivot.add(cow_model_simplified);
+  cow_model_simplified.position.set(0, 0, 0);
 });
 
 // set screen and camera
@@ -114,23 +128,23 @@ function addRing(x, y, z) {
   return torus;
 }
 
-const rings = [];
-const numRings = 3;
-for (let i = 0; i < numRings; i++) {
-  const randX = (Math.floor(Math.random() * 3) - 1) * 0.5;
-  const randY = (Math.floor(Math.random() * 3) - 1) * 0.5;
-  const randZ = (Math.floor(Math.random() * 3) - 1) * 0.5;
-  rings[i] = addRing(randX, randY, randZ);
-  for (let j = 0; j < Math.floor(Math.random() * 1000) + 1; j++) {
-    rotateRing(
-      rings[i],
-      ringRotations[i].x,
-      ringRotations[i].y,
-      ringRotations[i].z
-    );
-  }
-  //scene.add(rings[i]);
-}
+// const rings = [];
+// const numRings = 3;
+// for (let i = 0; i < numRings; i++) {
+//   const randX = (Math.floor(Math.random() * 3) - 1) * 0.5;
+//   const randY = (Math.floor(Math.random() * 3) - 1) * 0.5;
+//   const randZ = (Math.floor(Math.random() * 3) - 1) * 0.5;
+//   rings[i] = addRing(randX, randY, randZ);
+//   for (let j = 0; j < Math.floor(Math.random() * 1000) + 1; j++) {
+//     rotateRing(
+//       rings[i],
+//       ringRotations[i].x,
+//       ringRotations[i].y,
+//       ringRotations[i].z
+//     );
+//   }
+//   //scene.add(rings[i]);
+// }
 
 // point light
 const pointLight = new THREE.PointLight(0xffffff);
@@ -149,6 +163,7 @@ scene.add(pointLight, ambientLight);
 
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0, 0);
 
 // star
 const starGeometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -162,7 +177,7 @@ function addStar() {
     .map(() => THREE.MathUtils.randFloatSpread(200));
   star.position.set(x, y, z);
 
-  scene.add(star);
+  starPivot.add(star);
 }
 
 Array(300).fill().forEach(addStar);
@@ -257,8 +272,6 @@ document.body.onscroll = function moveCamera() {
   const ratio =
     (window.pageYOffset - prevOff) / document.documentElement.scrollHeight;
   console.log("scrollHeight: %d", document.documentElement.scrollHeight);
-  camera.position.x = radius * Math.cos(angle);
-  camera.position.z = radius * Math.sin(angle);
   console.log(ratio);
   if (scrollUp) {
     angle += ratio * 10;
@@ -272,14 +285,20 @@ document.body.onscroll = function moveCamera() {
     }
   }
 
+  let sign = 1;
+  if (!scrollUp) {
+    sign = -1;
+  }
+
   // cows
   //cow_model_detailed.position.y += ratio * 3;
-  cow_model_detailed.position.x += ratio * 15;
+  cow_model_detailed.position.x += ratio * 8;
+  cow_model_detailed.position.z += ratio * 2;
   //cow_model_simplified.position.y -= ratio * 3;
-  cow_model_simplified.position.x -= ratio * 15;
+  cow_model_simplified.position.x -= ratio * 8;
+  cow_model_simplified.position.z -= ratio * 2;
   console.log("ratio: " + ratio);
-  rotateRing(cow_model_detailed, 0, -ratio * 12, 0);
-  rotateRing(cow_model_simplified, 0, -ratio * 12, 0);
+  rotateRing(cowPivot, 0, sign * ratio * 12, 0);
 
   // set new previous
   prevOff = window.pageYOffset;
@@ -292,23 +311,23 @@ function animate() {
   requestAnimationFrame(animate);
 
   // rings
-  for (let i = 0; i < rings.length; i++) {
-    rotateRing(
-      rings[i],
-      ringRotations[i].x,
-      ringRotations[i].y,
-      ringRotations[i].z
-    );
-  }
+  // for (let i = 0; i < rings.length; i++) {
+  //   rotateRing(
+  //     rings[i],
+  //     ringRotations[i].x,
+  //     ringRotations[i].y,
+  //     ringRotations[i].z
+  //   );
+  // }
 
   // cow
-  rotateRing(cow_model_detailed, 0, -0.01, 0);
-  rotateRing(cow_model_simplified, 0, -0.01, 0);
+  rotateRing(cowPivot, 0, -0.01, 0);
+  rotateRing(starPivot, 0, -0.001, 0);
 
   // camera
-  camera.position.x = radius * Math.cos(angle);
-  camera.position.z = radius * Math.sin(angle);
-  angle += 0.001;
+  // camera.position.x = radius * Math.cos(angle);
+  // camera.position.z = radius * Math.sin(angle);
+  // angle += 0.001;
 
   controls.update();
 
