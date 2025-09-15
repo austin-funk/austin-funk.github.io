@@ -210,7 +210,7 @@ figcaption {
 
 .top {
   grid-column: 2 / 6;
-  margin-top: 15rem;
+  margin-top: 5vh;
 }
 
 .left {

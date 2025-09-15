@@ -21,7 +21,7 @@ let renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
 });
 
-const pivotPos = new THREE.Vector3(20, 5, -10);
+const pivotPos = new THREE.Vector3(25, 0, -10);
 
 // create cowPivot
 const cowPivot = new THREE.Object3D();
